@@ -19,4 +19,30 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="User.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Post.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Mail.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Comment.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardType.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardManager.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

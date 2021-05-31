@@ -149,6 +149,16 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="BoardManager.h" />
+    <ClInclude Include="BoardType.h" />
+    <ClInclude Include="Comment.h" />
+    <ClInclude Include="Mail.h" />
+    <ClInclude Include="Post.h" />
+    <ClInclude Include="User.h" />
+    <ClInclude Include="Viewer.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
