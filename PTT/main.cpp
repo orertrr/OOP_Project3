@@ -1,6 +1,6 @@
-﻿#include <iostream>
+﻿#include "BoardManager.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	BoardManager::Start();
 }

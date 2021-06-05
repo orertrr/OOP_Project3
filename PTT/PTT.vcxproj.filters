@@ -21,6 +21,12 @@
     <ClCompile Include="BoardManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -51,6 +57,24 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="Admin.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardTypeViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="PostViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="MailViewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

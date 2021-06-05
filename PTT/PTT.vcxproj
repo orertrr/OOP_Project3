@@ -148,17 +148,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoardManager.cpp" />
+    <ClCompile Include="LoginViewer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="BoardManager.h" />
     <ClInclude Include="BoardType.h" />
+    <ClInclude Include="BoardTypeViewer.h" />
+    <ClInclude Include="BoardViewer.h" />
     <ClInclude Include="Comment.h" />
+    <ClInclude Include="HomeViewer.h" />
+    <ClInclude Include="LoginViewer.h" />
     <ClInclude Include="Mail.h" />
+    <ClInclude Include="MailViewer.h" />
     <ClInclude Include="Member.h" />
     <ClInclude Include="Post.h" />
+    <ClInclude Include="PostViewer.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Viewer.h" />
   </ItemGroup>
