@@ -37,6 +37,7 @@ UserController::~UserController()
 }
 void UserController::Store()
 {
+	fileName = UserFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{

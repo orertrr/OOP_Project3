@@ -38,6 +38,7 @@ MailController::~MailController()
 }
 void MailController::Store()
 {
+	fileName = MAILFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{

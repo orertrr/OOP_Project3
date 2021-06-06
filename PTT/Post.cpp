@@ -38,6 +38,7 @@ PostController::~PostController()
 }
 void PostController::Store()
 {
+	fileName = PostListFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{

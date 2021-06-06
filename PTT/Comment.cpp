@@ -40,6 +40,7 @@ CommentController::~CommentController()
 }
 void CommentController::Store()
 {
+	fileName = COMMENTFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{

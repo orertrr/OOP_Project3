@@ -26,6 +26,7 @@ BoardController::~BoardController()
 }
 void BoardController::Store()
 {
+	fileName = BOARDFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{
@@ -113,6 +114,7 @@ BoardTypeController::~BoardTypeController()
 }
 void BoardTypeController::Store()
 {
+	fileName = BOARDTYPEFileName;
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
 	{
