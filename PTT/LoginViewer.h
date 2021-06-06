@@ -11,5 +11,5 @@ class LoginViewer : public Viewer
 {
 public:
 	void print();
-	void receive(char key) {};
+	void receive(int key) {};
 };

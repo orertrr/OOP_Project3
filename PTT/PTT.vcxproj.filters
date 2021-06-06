@@ -27,6 +27,15 @@
     <ClCompile Include="LoginViewer.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="HomeViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Post.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">

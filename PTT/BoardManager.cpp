@@ -19,7 +19,7 @@ void BoardManager::Start()
 
 	console_width = scbi.srWindow.Right + 1;
 
-	char input;
+	int input;
 	viewers.push(new LoginViewer());
 	viewers.top()->print();
 	while (input = _getch())
@@ -41,7 +41,7 @@ void BoardManager::EnableVTR()
 	SetConsoleMode(hIn, inMode);
 }
 
-void BoardManager::Send(char key, Viewer* currentViewer)
+void BoardManager::Send(int key, Viewer* currentViewer)
 {
 	currentViewer->receive(key);
 }
@@ -50,7 +50,7 @@ void BoardManager::Forward(Viewer* nextViewer)
 {
 	cout << CSI "0m";
 	cout << CSI "0;0H";
-	cout << CSI " J";
+	cout << CSI "J";
 
 	viewers.push(nextViewer);
 	nextViewer->print();
@@ -112,7 +112,7 @@ void BoardManager::Login()
 		}
 	} while (current_User == nullptr);
 
-	cout << "Login successful.\n";
+	Forward(new HomeViewer());
 }
 
 void BoardManager::Logout()

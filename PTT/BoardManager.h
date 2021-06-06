@@ -13,6 +13,7 @@
 #include "Comment.h"
 #include "BoardType.h"
 #include "LoginViewer.h"
+#include "HomeViewer.h"
 
 #define ESC "\x1b"
 #define CSI "\x1b["
@@ -38,7 +39,7 @@ private:
 
 	static void EnableVTR();
 
-	static void Send(char key, Viewer* currentViewer);
+	static void Send(int key, Viewer* currentViewer);
 	static void Forward(Viewer* nextViewer);
 	static void Back();
 
