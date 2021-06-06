@@ -5,7 +5,7 @@ void BoardTypeViewer::move_up()
 {
 	if (index - 1 < 0)
 		return;
-	
+
 	index--;
 	cout << CSI "1A";
 }

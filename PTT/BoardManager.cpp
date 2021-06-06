@@ -153,7 +153,7 @@ void BoardManager::Create_comment(PostViewer* post)
 	cout << "Type your comment here: ";
 	cout << CSI "47;30";
 	cout << CSI + std::to_string(console_width) + "@";
-	cin >> comment;
+	std::getline(cin, comment);
 
 	cout << CSI + std::to_string(console_width) + "@";
 	cout << "(1)Push (2)Pull (3)None";
@@ -175,29 +175,32 @@ void BoardManager::Create_comment(PostViewer* post)
 		do
 		{
 			kind = _getch();
-		} while (kind != '1' || kind != '2' || kind != '3');
+		} while (kind != '1' && kind != '2' && kind != '3');
 
 		if (kind == '1')
 			kind = 1;
-		else if (kind == '2')
-			kind = 0;
 		else if (kind == '3')
+			kind = 0;
+		else if (kind == '2')
 			kind = -1;
 	}
 
 	Comment new_comment(comment, current_User->getAccount(), post->p->getPostID(), kind);
 	CommentController().Insert(new_comment);
+	
 
+	//auto board = BoardController().Get(post->p->getBoardID());
+	//auto p = post->p;
+	auto board = post->p->getBoardID();
+	auto p = post->p->getPostID();
+	Back();
+	Back();
 	LoadData();
 
 	// Reflash Viewers
-	auto board = BoardController().Get(post->p->getBoardID());
-	auto p = post->p;
 
-	Back();
-	Back();
-	Forward(new BoardViewer(board));
-	Forward(new PostViewer(p));
+	Forward(new BoardViewer(BoardController().Get(board)));
+	Forward(new PostViewer(PostController().Get(p)));
 }
 
 void BoardManager::LoadData()

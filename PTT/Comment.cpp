@@ -1,7 +1,7 @@
 #include"Comment.h"
 
 
-CommentController::CommentController()
+CommentController::CommentController(): fileName(COMMENTFileName)
 {
 	dataFile.open(fileName, fstream::in);
 	int CIDTemp, PIDTemp, KindTemp;
@@ -61,7 +61,11 @@ void CommentController::Store()
 }
 bool CommentController::Insert(Comment& nc)
 {
-	nc.setCommentID(CommentList.back()->getCommentID() + 1);
+	if (CommentList.size() > 0)
+		nc.setCommentID(CommentList.back()->getCommentID() + 1);
+	else
+		nc.setCommentID(1);
+
 	CommentList.push_back(new Comment(nc));
 	return true;
 }

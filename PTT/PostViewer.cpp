@@ -14,6 +14,7 @@ PostViewer::PostViewer(Post* post)
 
 		if (element->getPostID() == post->getPostID())
 		{
+			comment_users.push_back(UserController().Get(element->getUserAccount()));
 			comments.push_back(element);
 			if (element->getKind() == 1)
 				push++;
@@ -59,8 +60,9 @@ void PostViewer::print()
 		}
 		printf(CSI "0m");
 
-		printf("%-15s: ", comment_users[index]->getName());
-		printf("%s", element->getContent());
+		printf("%-15s: ", comment_users[index]->getName().c_str());
+		printf("%s\n", element->getContent().c_str());
+		index++;
 	}
 }
 

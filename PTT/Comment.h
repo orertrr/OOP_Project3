@@ -17,7 +17,8 @@ private:
 	bool beDelete;
 public:
 	Comment() : CommentID(-1), PostID(-1), Kind(0), UserAccount(""), content(""), Delete(""), beDelete(false) {}
-	Comment(Comment& oc) : CommentID(-1), PostID(-1), Kind(0), UserAccount(""), content(""), Delete(""), beDelete(false) {}
+	// Comment(Comment& oc) : CommentID(-1), PostID(-1), Kind(0), UserAccount(""), content(""), Delete(""), beDelete(false) {}
+	Comment(Comment& oc) : CommentID(oc.CommentID), PostID(oc.PostID), Kind(oc.Kind), UserAccount(oc.UserAccount), content(oc.content), Delete(oc.Delete), beDelete(oc.beDelete) {}
 	Comment(string cont, string ua, int pid, int ckind) : CommentID(-1), PostID(pid), Kind(ckind), UserAccount(ua), content(cont), Delete(""), beDelete(false) {}
 	Comment(string cont, string ua, string dmsg, int pid, int cid, int ckind, bool bd) : CommentID(cid), PostID(pid), Kind(ckind), UserAccount(ua), content(cont), Delete(dmsg), beDelete(bd) {}
 	int getCommentID() { return this->CommentID; }

@@ -59,8 +59,10 @@ void MailController::Store()
 }
 bool MailController::Insert(Mail& nm)
 {
-
-	nm.setMailID(MailList.back()->getMailID() + 1);
+	if (MailList.size() > 0)
+		nm.setMailID(MailList.back()->getMailID() + 1);
+	else
+		nm.setMailID(1);
 	MailList.push_back(new Mail(nm));
 	return true;
 }

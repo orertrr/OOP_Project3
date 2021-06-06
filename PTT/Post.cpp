@@ -59,7 +59,10 @@ void PostController::Store()
 }
 bool PostController::Insert(Post& np)
 {
-	np.setPostID(PostList.back()->getPostID() + 1);
+	if (PostList.size() > 0)
+		np.setPostID(PostList.back()->getPostID() + 1);
+	else
+		np.setPostID(1);
 	PostList.push_back(new Post(np));
 	return true;
 }
