@@ -6,11 +6,7 @@
 
 void LoginViewer::print()
 {
-	UserManager manager;
-
 	string width = std::to_string(BoardManager::console_width);
-	string account;
-	string password;
 
 	cout << CSI "37;44m";
 	cout << CSI << width << "@\n";

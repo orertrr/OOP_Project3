@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Viewer.h"
+#include "BoardTypeViewer.h"
 
 class HomeViewer : public Viewer
 {
@@ -11,6 +12,7 @@ private:
 
 	void move_up();
 	void move_down();
+	void enter();
 
 public:
 	void print();

@@ -28,6 +28,14 @@ void HomeViewer::move_down()
 	} while (!enable_state[selection_index]);
 }
 
+void HomeViewer::enter()
+{
+	if (selection_index == 0)
+		BoardManager::Forward(new BoardTypeViewer());
+	else if (selection_index == 3)
+		BoardManager::Logout();
+}
+
 void HomeViewer::print()
 {
 	selection_count = 4; selection_index = 0;
@@ -73,6 +81,9 @@ void HomeViewer::receive(int key)
 	// 77 Key_Right
 	// 80 Key_Down
 
+	if (key == 13)
+		enter();
+
 	if (key != 224) return;
 
 	key = _getch();
@@ -80,4 +91,6 @@ void HomeViewer::receive(int key)
 		move_up();
 	else if (key == 80)
 		move_down();
+	else if (key == 77)
+		enter();
 }

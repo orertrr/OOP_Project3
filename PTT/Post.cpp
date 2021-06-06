@@ -14,7 +14,7 @@ PostController::PostController() : fileName(PostListFileName)
 			if (postFile.is_open())
 			{
 				postFile >> postIDTemp >> boardIDTemp >> userAccountTemp;
-				getline(postFile, titleTemp);//¥h±¼\n
+				getline(postFile, titleTemp);//去掉\n
 				getline(postFile, titleTemp);
 				contentTemp = "";
 				while (getline(postFile, contentTT, '\n'))
@@ -31,10 +31,10 @@ PostController::PostController() : fileName(PostListFileName)
 PostController::~PostController()
 {
 	this->Store();
-	for (auto& i : PostList)
+	/*for (auto& i : PostList)
 	{
 		delete i;
-	}
+	}*/
 }
 void PostController::Store()
 {
@@ -43,7 +43,7 @@ void PostController::Store()
 	{
 		for (auto& i : this->PostList)
 		{
-			fileName = POSTPREFIX + to_string(i->getPostID()) + ".txt";
+			fileName = "Posts\\" POSTPREFIX + to_string(i->getPostID()) + ".txt";
 			postFile.open(fileName, fstream::out | fstream::trunc);
 			if (postFile.is_open())
 			{
@@ -84,16 +84,11 @@ bool PostController::Delete(Post& op)
 		if (i->getPostID() == op.getPostID())
 		{
 			fileName = POSTPREFIX + to_string(i->getPostID()) + ".txt";
-			if (remove(fileName.c_str()))
-			{
-				delete i;
-				this->PostList.erase(PostList.begin() + (&i - &PostList[0]));
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+
+			remove(fileName.c_str());
+			delete i;
+			this->PostList.erase(PostList.begin() + (&i - &PostList[0]));
+			return true;
 		}
 	}
 	return false;
@@ -102,7 +97,7 @@ Post* PostController::Get(int pid)
 {
 	for (auto& i : PostList)
 	{
-		if (i->getPostID() == /*op.getPostID()*/ pid)
+		if (i->getPostID() == pid)
 		{
 			return i;
 		}

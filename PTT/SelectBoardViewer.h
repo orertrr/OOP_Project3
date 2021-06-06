@@ -2,9 +2,9 @@
 
 #include "Viewer.h"
 #include "Board.h"
-#include "SelectBoardViewer.h"
+#include "BoardViewer.h"
 
-class BoardTypeViewer : public Viewer
+class SelectBoardViewer : public Viewer
 {
 private:
 	int index;
@@ -14,9 +14,11 @@ private:
 	void move_down();
 	void enter();
 
-	vector<int> typesid;
+	vector<Board*> boards;
 
 public:
+	SelectBoardViewer(int Typeid);
+
 	void print();
 	void receive(int key);
 };

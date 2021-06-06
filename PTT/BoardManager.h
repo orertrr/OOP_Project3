@@ -11,9 +11,10 @@
 #include "Post.h"
 #include "Mail.h"
 #include "Comment.h"
-#include "BoardType.h"
 #include "LoginViewer.h"
 #include "HomeViewer.h"
+#include "BoardTypeViewer.h"
+#include "PostViewer.h"
 
 #define ESC "\x1b"
 #define CSI "\x1b["
@@ -26,6 +27,10 @@ class BoardManager
 {
 	friend class HomeViewer;
 	friend class LoginViewer;
+	friend class BoardTypeViewer;
+	friend class SelectBoardViewer;
+	friend class BoardViewer;
+	friend class PostViewer;
 
 private:
 	static vector<User*> users;
@@ -33,6 +38,7 @@ private:
 	static vector<Mail*> mails;
 	static vector<BoardType*> boardtypes;
 	static vector<Comment*> comments;
+	static vector<Post*> posts;
 	static User* current_User;
 	static stack<Viewer*> viewers;
 	static int console_width;
@@ -45,6 +51,9 @@ private:
 
 	static void Login();
 	static void Logout();
+	static void Create_comment(PostViewer* post);
+
+	static void LoadData();
 	
 public:
 	static void Start();

@@ -64,15 +64,15 @@ public:
 
 };
 
-class UserManager
+class UserController
 {
 private:
 	string fileName;
 	fstream dataFile;
 	vector<User*> UserList;
 public:
-	UserManager();
-	~UserManager();
+	UserController();
+	~UserController();
 	void Store();
 	bool Insert(User&);
 	bool Update(User&);

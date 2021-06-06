@@ -1,6 +1,6 @@
 #include"User.h"
 
-UserManager::UserManager() : fileName(UserFileName)
+UserController::UserController() : fileName(UserFileName)
 {
 	dataFile.open(fileName, fstream::in);
 	string Nametemp, AccountTemp, PassWordTemp;
@@ -15,28 +15,27 @@ UserManager::UserManager() : fileName(UserFileName)
 			{
 			case MEMBER:
 				Utemp = new Member(Nametemp, AccountTemp, PassWordTemp);
-				UserList.push_back(Utemp);
 				break;
 			case ADMINISTRATOR:
 				Utemp = new Administrator(Nametemp, AccountTemp, PassWordTemp);
-				UserList.push_back(Utemp);
 				break;
 			default:
 				break;
 			}
+			this->UserList.push_back(Utemp);
 		}
 		dataFile.close();
 	}
 }
-UserManager::~UserManager()
+UserController::~UserController()
 {
 	this->Store();
-	for (auto& i : UserList)
+	/*for (auto& i : UserList)
 	{
 		delete i;
-	}
+	}*/
 }
-void UserManager::Store()
+void UserController::Store()
 {
 	dataFile.open(fileName, fstream::out | fstream::trunc);
 	if (dataFile.is_open())
@@ -48,7 +47,7 @@ void UserManager::Store()
 		dataFile.close();
 	}
 }
-bool UserManager::Insert(User& au)
+bool UserController::Insert(User& au)
 {
 	User* Utemp;
 	for (auto& i : UserList)
@@ -70,7 +69,7 @@ bool UserManager::Insert(User& au)
 	this->UserList.push_back(Utemp);
 	return true;
 }
-bool UserManager::Update(User& ou)
+bool UserController::Update(User& ou)
 {
 	for (auto& i : UserList)
 	{
@@ -94,7 +93,7 @@ bool UserManager::Update(User& ou)
 	}
 	return false;
 }
-bool UserManager::Delete(User& du)
+bool UserController::Delete(User& du)
 {
 	for (auto& i : UserList)
 	{
@@ -107,7 +106,7 @@ bool UserManager::Delete(User& du)
 	}
 	return false;
 }
-User* UserManager::Get(string UserAccount)
+User* UserController::Get(string UserAccount)
 {
 	for (auto& i : UserList)
 	{
@@ -118,13 +117,3 @@ User* UserManager::Get(string UserAccount)
 	}
 	return nullptr;
 }
-
-
-/*
-class UserManager
-{
-	private:
-	string fileName;
-	vector<User*> UserList;
-};
-*/

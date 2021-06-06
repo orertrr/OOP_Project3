@@ -36,6 +36,27 @@
     <ClCompile Include="Viewer.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="SelectBoardViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="BoardViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Comment.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="BoardTypeViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Mail.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="PostViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -53,28 +74,16 @@
     <ClInclude Include="Comment.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="BoardType.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
     <ClInclude Include="BoardManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="Viewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="Member.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="Admin.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
     <ClInclude Include="LoginViewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="HomeViewer.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="BoardTypeViewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="BoardViewer.h">
@@ -84,6 +93,12 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="MailViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectBoardViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardTypeViewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

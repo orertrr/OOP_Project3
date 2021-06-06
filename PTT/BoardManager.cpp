@@ -5,12 +5,14 @@ vector<Board*> BoardManager::boards;
 vector<Mail*> BoardManager::mails;
 vector<BoardType*> BoardManager::boardtypes;
 vector<Comment*> BoardManager::comments;
+vector<Post*> BoardManager::posts;
 User* BoardManager::current_User = nullptr;
 stack<Viewer*> BoardManager::viewers;
 int BoardManager::console_width;
 
 void BoardManager::Start()
 {
+	LoadData();
 	EnableVTR();
 
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -22,6 +24,8 @@ void BoardManager::Start()
 	int input;
 	viewers.push(new LoginViewer());
 	viewers.top()->print();
+
+	cout << CSI "?12h";
 	while (input = _getch())
 	{
 		Send(input, viewers.top());
@@ -62,12 +66,15 @@ void BoardManager::Back()
 	viewers.pop();
 	delete v;
 
+	cout << CSI "0m";
+	cout << CSI "0;0H";
+	cout << CSI "J";
 	viewers.top()->print();
 }
 
 void BoardManager::Login()
 {
-	UserManager manager;
+	UserController controller;
 	string account;
 	string password;
 
@@ -91,7 +98,7 @@ void BoardManager::Login()
 		else if (account == "new");
 		else
 		{
-			User* login = manager.Get(account);
+			User* login = controller.Get(account);
 
 			if (login == nullptr)
 			{
@@ -106,9 +113,18 @@ void BoardManager::Login()
 			cout << CSI "6;0H";
 			cout << "Password: ";
 			cin >> password;
+			cin.get();
 
 			if (login->getPassWorrd() == password)
-				current_User = login;
+			{
+				if (current_User != nullptr)
+				{
+					delete current_User;
+				}
+
+				current_User = new User();
+				*current_User = *login;
+			}
 		}
 	} while (current_User == nullptr);
 
@@ -117,6 +133,7 @@ void BoardManager::Login()
 
 void BoardManager::Logout()
 {
+	cout << CSI "J";
 	current_User = nullptr;
 
 	while (viewers.size() > 0)
@@ -125,6 +142,83 @@ void BoardManager::Logout()
 		viewers.pop();
 	}
 
-	viewers.push(new LoginViewer());
-	viewers.top()->print();
+	Forward(new LoginViewer());
+}
+
+void BoardManager::Create_comment(PostViewer* post)
+{
+	string comment;
+
+	cout << CSI + std::to_string(console_width - 1) << ";0H";
+	cout << "Type your comment here: ";
+	cout << CSI "47;30";
+	cout << CSI + std::to_string(console_width) + "@";
+	cin >> comment;
+
+	cout << CSI + std::to_string(console_width) + "@";
+	cout << "(1)Push (2)Pull (3)None";
+
+	int kind = 0;
+	bool has_pushed_or_pulled = false;
+
+	for (auto e : post->comments)
+	{
+		if (!e->getBeDelete() && e->getUserAccount() == current_User->getAccount() && (e->getKind() == 1 || e->getKind() == -1))
+		{
+			has_pushed_or_pulled = true;
+			break;
+		}
+	}
+
+	if (!has_pushed_or_pulled)
+	{
+		do
+		{
+			kind = _getch();
+		} while (kind != '1' || kind != '2' || kind != '3');
+
+		if (kind == '1')
+			kind = 1;
+		else if (kind == '2')
+			kind = 0;
+		else if (kind == '3')
+			kind = -1;
+	}
+
+	Comment new_comment(comment, current_User->getAccount(), post->p->getPostID(), kind);
+	CommentController().Insert(new_comment);
+
+	LoadData();
+
+	// Reflash Viewers
+	auto board = BoardController().Get(post->p->getBoardID());
+	auto p = post->p;
+
+	Back();
+	Back();
+	Forward(new BoardViewer(board));
+	Forward(new PostViewer(p));
+}
+
+void BoardManager::LoadData()
+{
+	for (auto element : users)
+		delete element;
+	for (auto element : boards)
+		delete element;
+	for (auto element : posts)
+		delete element;
+	for (auto element : comments)
+		delete element;
+	for (auto element : boardtypes)
+		delete element;
+	for (auto element : mails)
+		delete element;
+
+	users = UserController().GetAll();
+	boards = BoardController().GetAll();
+	posts = PostController().GetAll();
+	comments = CommentController().GetAll();
+	boardtypes = BoardTypeController().GetAll();
+	mails = MailController().GetAll();
 }
