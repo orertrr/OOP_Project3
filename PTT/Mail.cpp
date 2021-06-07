@@ -5,7 +5,7 @@ MailController::MailController() : fileName(MAILFileName)
 {
 	dataFile.open(fileName, fstream::in);
 	int MailIDTemp;
-	string FATemp, TATemp, ContentTemp, ContentTT;
+	string FATemp, TATemp, TitleTemp, ContentTemp, ContentTT;
 
 	if (dataFile.is_open())
 	{
@@ -15,14 +15,15 @@ MailController::MailController() : fileName(MAILFileName)
 			if (mailFile.is_open())
 			{
 				mailFile >> MailIDTemp >> FATemp >> TATemp;
-				getline(mailFile, ContentTemp);//¥h±¼\n
+				mailFile.ignore();
+				getline(mailFile, TitleTemp);
 				ContentTemp = "";
 				while (getline(mailFile, ContentTT, '\n'))
 				{
 					ContentTemp += ContentTT;
 				}
 				mailFile.close();
-				MailList.push_back(new Mail(MailIDTemp, FATemp, TATemp, ContentTemp));
+				MailList.push_back(new Mail(MailIDTemp, FATemp, TATemp, TitleTemp, ContentTemp));
 			}
 		}
 		dataFile.close();
@@ -48,7 +49,7 @@ void MailController::Store()
 			mailFile.open(fileName, fstream::out | fstream::trunc);
 			if (mailFile.is_open())
 			{
-				mailFile << i->getMailID() << '\n' << i->getFromAccount() << '\n' << i->getToAccount() << '\n' << i->getContent();
+				mailFile << i->getMailID() << '\n' << i->getFromAccount() << '\n' << i->getToAccount() << '\n' << i->getTitle() << '\n' << i->getContent();
 				mailFile.close();
 
 				dataFile << fileName << '\n';
@@ -74,6 +75,7 @@ bool MailController::Update(Mail& om)
 		{
 			i->setFromAccount(om.getFromAccount());
 			i->setToAccount(om.getToAccount());
+			i->setTitle(om.getTitle());
 			i->setContent(om.getContent());
 			return true;
 		}

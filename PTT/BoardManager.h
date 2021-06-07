@@ -31,6 +31,8 @@ class BoardManager
 	friend class SelectBoardViewer;
 	friend class BoardViewer;
 	friend class PostViewer;
+	friend class MailBoxViewer;
+	friend class MailViewer;
 
 private:
 	static vector<User*> users;
@@ -52,6 +54,7 @@ private:
 	static void Login();
 	static void Logout();
 	static void Create_comment(PostViewer* post);
+	static void Create_mail();
 
 	static void LoadData();
 	

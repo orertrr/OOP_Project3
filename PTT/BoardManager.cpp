@@ -104,8 +104,7 @@ void BoardManager::Login()
 			{
 				cout << CSI "6;0H";
 				cout << "This Account is not exists.\n";
-				cout << "Press any key to continue.";
-				cin.get();
+				system("pause");
 
 				continue;
 			}
@@ -201,6 +200,53 @@ void BoardManager::Create_comment(PostViewer* post)
 
 	Forward(new BoardViewer(BoardController().Get(board)));
 	Forward(new PostViewer(PostController().Get(p)));
+}
+
+void BoardManager::Create_mail()
+{
+	string title;
+	string to;
+	string content;
+
+	cout << CSI "0m";
+	cout << CSI "0;0H";
+	cout << CSI "J";
+
+	cout << "Title: ";
+	getline(cin, title);
+	
+	bool repeated = false;
+	do
+	{
+		cout << CSI "3;0H";
+		cout << CSI "K";
+		cout << CSI "2;0H";
+		cout << CSI "K";
+
+		if (repeated)
+		{
+			cout << CSI "3;0H";
+			cout << "This account is not exists.\n";
+		}
+
+		cout << CSI << "2;0H";
+		cout << "To: ";
+		cin >> to;
+		repeated = true;
+	} while (UserController().Get(to) == nullptr);
+
+	cin.ignore();
+
+	cout << CSI "K";
+	cout << "Content:\n";
+	getline(cin, content);
+
+	Mail new_mail(current_User->getAccount(), to, title, content);
+	MailController().Insert(new_mail);
+
+	Back();
+	LoadData();
+	Forward(new MailBoxViewer());
 }
 
 void BoardManager::LoadData()

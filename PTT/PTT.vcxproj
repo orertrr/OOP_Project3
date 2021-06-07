@@ -155,6 +155,8 @@
     <ClCompile Include="HomeViewer.cpp" />
     <ClCompile Include="LoginViewer.cpp" />
     <ClCompile Include="Mail.cpp" />
+    <ClCompile Include="MailBoxViewer.cpp" />
+    <ClCompile Include="MailViewer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="PostViewer.cpp" />
@@ -171,6 +173,7 @@
     <ClInclude Include="HomeViewer.h" />
     <ClInclude Include="LoginViewer.h" />
     <ClInclude Include="Mail.h" />
+    <ClInclude Include="MailBoxViewer.h" />
     <ClInclude Include="MailViewer.h" />
     <ClInclude Include="Post.h" />
     <ClInclude Include="PostViewer.h" />

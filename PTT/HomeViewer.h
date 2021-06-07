@@ -2,6 +2,7 @@
 
 #include "Viewer.h"
 #include "BoardTypeViewer.h"
+#include "MailBoxViewer.h"
 
 class HomeViewer : public Viewer
 {

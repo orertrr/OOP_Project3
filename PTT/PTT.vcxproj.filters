@@ -57,6 +57,12 @@
     <ClCompile Include="PostViewer.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="MailBoxViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="MailViewer.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -99,6 +105,9 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="BoardTypeViewer.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="MailBoxViewer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

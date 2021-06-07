@@ -32,6 +32,8 @@ void HomeViewer::enter()
 {
 	if (selection_index == 0)
 		BoardManager::Forward(new BoardTypeViewer());
+	else if (selection_index == 1)
+		BoardManager::Forward(new MailBoxViewer());
 	else if (selection_index == 3)
 		BoardManager::Logout();
 }
