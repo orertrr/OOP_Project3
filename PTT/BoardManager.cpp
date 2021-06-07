@@ -69,12 +69,13 @@ void BoardManager::Back()
 	cout << CSI "0m";
 	cout << CSI "0;0H";
 	cout << CSI "J";
-	viewers.top()->print();
+
+	if (!viewers.empty())
+		viewers.top()->print();
 }
 
 void BoardManager::Login()
 {
-	UserController controller;
 	string account;
 	string password;
 
@@ -95,9 +96,15 @@ void BoardManager::Login()
 		getline(cin, account);
 
 		if (account == "Guest");
-		else if (account == "new");
+		else if (account == "new")
+		{
+			SignUp();
+			return;
+		}
 		else
 		{
+			UserController controller;
+
 			User* login = controller.Get(account);
 
 			if (login == nullptr)
@@ -141,6 +148,48 @@ void BoardManager::Logout()
 		viewers.pop();
 	}
 
+	Forward(new LoginViewer());
+}
+
+void BoardManager::SignUp()
+{
+	cout << CSI "0;0H";
+	cout << CSI "0m";
+	cout << CSI "J";
+
+	string account, password, name;
+
+	bool repeated = false;
+	do
+	{
+		cout << CSI "0;0H";
+		cout << CSI "J";
+
+		if (repeated)
+		{
+			cout << CSI "2;0H";
+			cout << "This is Account has existed.";
+		}
+		cout << CSI "0;0H";
+
+		cout << "Enter your Account: ";
+		cin >> account;
+		repeated = true;
+
+	} while (UserController().Get(account) != nullptr);
+	
+	cout << CSI "K";
+	cout << "Enter your password: ";
+	cin >> password;
+	cout << "Enter your name: ";
+	cin >> name;
+	cin.get();
+
+	User new_user(name, account, password, MEMBER);
+	UserController().Insert(new_user);
+	
+	Back();
+	LoadData();
 	Forward(new LoginViewer());
 }
 

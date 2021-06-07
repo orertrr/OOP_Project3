@@ -53,6 +53,7 @@ private:
 
 	static void Login();
 	static void Logout();
+	static void SignUp();
 	static void Create_comment(PostViewer* post);
 	static void Create_mail();
 
